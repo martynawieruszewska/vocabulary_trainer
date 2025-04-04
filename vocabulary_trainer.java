@@ -20,9 +20,19 @@ public class vocabulary_trainer {
             switch (choice) {
                 case "1":
                     System.out.println("You chose to add new words");
-                    System.out.println("Press Enter to return to menu...");
-                    scanner.nextLine(); // Optional: clear buffer
-                    scanner.nextLine(); // Actual wait
+                    while(true) {
+                        System.out.println("Enter Polish words or phrase");
+                        String polish = scanner.nextLine().trim();
+                        if (polish.isEmpty()) break;
+
+                        System.out.println("Enter English translation: ");
+                        String english = scanner.nextLine().trim();
+
+                        Word newWord = new Word(polish, english);
+                        words.add(newWord);
+
+                        System.out.println("Added: " + newWord);
+                    }
                     break;
 
                 case "2":
@@ -36,8 +46,7 @@ public class vocabulary_trainer {
                         System.out.println("Type the English translation: ");
                         String answer = scanner.nextLine().trim();
 
-                        if(answer.equalsIgnoreCase(word.getEnglish())) {
-                            word.markAsKnown();
+                        if (answer.equalsIgnoreCase(word.getEnglish())) {                            word.markAsKnown();
                             System.out.println("Correct!");
                         } else {
                             System.out.println("Incorrect. Correct answer: " + word.getEnglish());
@@ -50,12 +59,31 @@ public class vocabulary_trainer {
                     break;
 
                 case "3":
-                    System.out.println("You chose to practice unknown words");
-                    System.out.println("Press Enter to return to menu...");
-                    scanner.nextLine(); // Optional: clear buffer
-                    scanner.nextLine(); // Actual wait
-                    break;
+                    boolean foundUnknown = false;
+                    
+                    for (Word word : words){
+                        if(!word.isKnown()) {
+                            foundUnknown = true;
+                            System.out.println("Polish: " + word.getPolish());
+                            System.out.println("Type the okay giEnglish tanslation: ");
+                            String answer = scanner.nextLine().trim();
 
+
+                            if(answer.equalsIgnoreCase(word.getEnglish())) {
+                                word.markAsKnown();
+                                System.out.println("Correct!");
+                            } else {
+                                System.out.println("Incorrect. Correct answer: " + word.getEnglish());
+                            }
+                            System.out.println();
+                        }
+                    }
+                    if (!foundUnknown) {
+                        System.out.println("All words are known");
+                    }
+                    System.out.println("Press enter to return to menu.");
+                    scanner.nextLine();
+                    break;
                 case "0":
                     System.out.println("Goodbye!");
                     scanner.close(); // Closes the scanner
