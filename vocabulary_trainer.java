@@ -33,14 +33,14 @@ public class vocabulary_trainer {
             switch (choice) {
                 case "1":
                     while (true) {
-                        System.out.println("Enter Polish word or phrase (leave empty to return):");
-                        String polish = scanner.nextLine().trim();
-                        if (polish.isEmpty()) break;
+                        System.out.println("Enter definition (leave empty to return):");
+                        String definition = scanner.nextLine().trim();
+                        if (definition.isEmpty()) break;
 
                         System.out.println("Enter English translation:");
                         String english = scanner.nextLine().trim();
 
-                        Word newWord = new Word(polish, english);
+                        Word newWord = new Word(definition, english);
                         words.add(newWord);
                         saveAllWords(words);
                         System.out.println("Added: " + newWord);
@@ -57,7 +57,7 @@ public class vocabulary_trainer {
                     Collections.shuffle(shuffledAll); //  Random order
 
                     for (Word word : shuffledAll) {
-                        System.out.println("Polish: " + word.getPolish());
+                        System.out.println("Definition: " + word.getDefinition());
                         System.out.print("Type the English translation: ");
                         String answer = scanner.nextLine().trim();
 
@@ -95,7 +95,7 @@ public class vocabulary_trainer {
                     Collections.shuffle(unknown);
 
                     for (Word word : unknown) {
-                        System.out.println("Polish: " + word.getPolish());
+                        System.out.println("Definition: " + word.getDefinition());
                         System.out.print("Type the English translation: ");
                         String answer = scanner.nextLine().trim();
 
@@ -126,7 +126,7 @@ public class vocabulary_trainer {
         }
     }
 
-    // 💾 Save all words to file (overwrite mode)
+    // Save all words to file (overwrite mode)
     private static void saveAllWords(List<Word> words) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (Word w : words) {
