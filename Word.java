@@ -24,4 +24,13 @@ public class Word {
     public void setKnown(boolean known) {
         this.known = known;
     }
+    
+    public void markAsKnown() {
+        this.known = true;
+    }
+
+    @Override // Overrides the default toString() method from the Object class
+    public String toString() { // Returns a readable string with the Polish and English version of the wordgive
+        return polish + " – " + english + (known ? " ✅" : " ❌");
+    }
 }

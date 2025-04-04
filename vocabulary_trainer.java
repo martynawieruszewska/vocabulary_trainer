@@ -26,10 +26,27 @@ public class vocabulary_trainer {
                     break;
 
                 case "2":
+                    if(words.isEmpty()){
+                        System.out.println("No words to practice yet.");
+                        break;
+                    }
                     System.out.println("You chose to practice all words");
-                    System.out.println("Press Enter to return to menu...");
-                    scanner.nextLine(); // Optional: clear buffer
-                    scanner.nextLine(); // Actual wait
+                    for(Word word : words) {
+                        System.out.println("Polish: " + word.getPolish());
+                        System.out.println("Type the English translation: ");
+                        String answer = scanner.nextLine().trim();
+
+                        if(answer.equalsIgnoreCase(word.getEnglish())) {
+                            word.markAsKnown();
+                            System.out.println("Correct!");
+                        } else {
+                            System.out.println("Incorrect. Correct answer: " + word.getEnglish());
+                        }
+                        System.out.println();
+
+                    }
+                    System.out.println("Practice session finished. Press Enter to return to menu...");
+                    scanner.nextLine(); // wait before returning to menu
                     break;
 
                 case "3":
