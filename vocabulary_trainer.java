@@ -116,7 +116,7 @@ public class vocabulary_trainer {
                     scanner.nextLine();
                     break;
                 
-                case "4";
+                case "4":
                     removeWord(scanner, words);
                     saveAllWords(words);
                     break;
@@ -144,7 +144,7 @@ public class vocabulary_trainer {
     }
     private static void removeWord(Scanner scanner, ArrayList<Word> words) {
         if (words.isEmpty()) {
-            System.out.println("📭 The word list is empty. Nothing to remove.");
+            System.out.println("The word list is empty. Nothing to remove.");
             return;
         }
     
@@ -159,9 +159,9 @@ public class vocabulary_trainer {
         boolean removed = words.removeIf(word -> word.getEnglish().equalsIgnoreCase(input));
     
         if (removed) {
-            System.out.println("✅ Word or phrase removed successfully.");
+            System.out.println("Word or phrase removed successfully.");
         } else {
-            System.out.println("⚠️ No matching word or phrase found.");
+            System.out.println("No matching word or phrase found.");
         }
     }
 }
