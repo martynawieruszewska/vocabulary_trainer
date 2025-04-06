@@ -34,12 +34,12 @@ public class vocabulary_trainer {
             switch (choice) {
                 case "1":
                     while (true) {
+                        System.out.println("Enter translation (word or phrase):");
+                        String english = scanner.nextLine().trim();
+
                         System.out.println("Enter definition (leave empty to return):");
                         String definition = scanner.nextLine().trim();
                         if (definition.isEmpty()) break;
-
-                        System.out.println("Enter English translation:");
-                        String english = scanner.nextLine().trim();
 
                         Word newWord = new Word(definition, english);
                         words.add(newWord);
