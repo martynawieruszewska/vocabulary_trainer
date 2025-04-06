@@ -26,6 +26,7 @@ public class vocabulary_trainer {
             System.out.println("(1) Add new words");
             System.out.println("(2) Practice all words");
             System.out.println("(3) Practice unknown words only");
+            System.out.println("(4) Remove a word");
             System.out.println("(0) Exit");
             System.out.print("Type your choice: ");
             String choice = scanner.nextLine();
@@ -114,6 +115,11 @@ public class vocabulary_trainer {
                     System.out.println("Practice session finished. Press Enter to return.");
                     scanner.nextLine();
                     break;
+                
+                case "4";
+                    removeWord(scanner, words);
+                    saveAllWords(words);
+                    break;
 
                 case "0":
                     System.out.println("Goodbye!");
@@ -134,6 +140,28 @@ public class vocabulary_trainer {
             }
         } catch (IOException e) {
             System.out.println("Error saving words to file.");
+        }
+    }
+    private static void removeWord(Scanner scanner, ArrayList<Word> words) {
+        if (words.isEmpty()) {
+            System.out.println("📭 The word list is empty. Nothing to remove.");
+            return;
+        }
+    
+        System.out.println("Your current words:");
+        for (int i = 0; i < words.size(); i++) {
+            System.out.println((i + 1) + ". " + words.get(i));
+        }
+    
+        System.out.print("Enter the ENGLISH word or phrase you want to remove: ");
+        String input = scanner.nextLine().trim();
+    
+        boolean removed = words.removeIf(word -> word.getEnglish().equalsIgnoreCase(input));
+    
+        if (removed) {
+            System.out.println("✅ Word or phrase removed successfully.");
+        } else {
+            System.out.println("⚠️ No matching word or phrase found.");
         }
     }
 }
